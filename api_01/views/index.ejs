@@ -1,0 +1,47 @@
+<% include partials/header %>
+
+<div class="jumbotron py-1 text-center">
+    <h1 class="display-4">Įrašų sąrašas</h1>
+        <p class="lead">Atvaizduojami visi įrašai iš pateikto API</p>
+        <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-outline-success btn-md" href="/posts/new" role="button">Pridėti naują įrašą</a>
+    </p>
+</div>
+
+<div class="container">
+    
+    <div class="row">
+        
+        <% posts.slice().reverse().forEach(function(post) { %>
+            <div class="col-lg-4 col-md-6 p-1">
+                <div class="card">
+                    <div class="card-header">
+                        <%= post.title %>
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p><%= post.body.substring(0, 100) %>... </p>
+                            <div class="d-flex justify-content-end">
+                                <a class="badge badge-info badge-pill" href="/posts/<%= post.id %>">Skaityti daugiau</a>
+                            </div>
+                            <footer class="blockquote-footer">
+                                Author: 
+                                <cite title="Post id number: <%= post.id %>">
+                                    <% users.forEach(function(user){
+                                            if (user.id == post.userId) { %>
+                                                <%= user.name %>
+                                    <% }}) %>
+                                </cite>
+                            </footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+        
+    </div>
+</div>
+
+
+<% include partials/footer %>

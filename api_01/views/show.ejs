@@ -1,0 +1,22 @@
+<% include partials/header %>
+
+<div class="container mt-3">
+    <div class="jumbotron py-3 text-center">
+        <h1 class="display-4"><%= post.title %></h1>
+        <p class="lead"><%= post.body %></p>
+        <hr class="my-4">
+        <h4>Autorius</h4>
+        
+        <% users.forEach(function(user){
+            if (user.id == post.userId) { %>
+                <p><span class="font-weight-bold">Slapyvardis: </span><%= user.username %></p>
+                <p><span class="font-weight-bold">Vardas: </span><%= user.name %></p>
+                <p><span class="font-weight-bold">El. paštas: </span><%= user.email %></p>
+                <p><span class="font-weight-bold">Miestas: </span><%= user.address.city %></p>
+                <p><span class="font-weight-bold">Įmonė: </span><%= user.company.name %></p>
+        <% }}) %>
+        
+            <a class="btn btn-outline-success btn-md mt-3" href="/posts" role="button">Rodyti visus pranešimus</a>
+    </div>
+</div>
+<% include partials/footer %>
