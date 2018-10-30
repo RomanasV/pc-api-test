@@ -24,7 +24,7 @@ request('https://jsonplaceholder.typicode.com/users', function (error, response,
 
 
 app.get("/", function(req, res) {
-    res.render("home");
+    res.redirect("/posts");
 });
 
 app.get("/posts", function(req, res) {
