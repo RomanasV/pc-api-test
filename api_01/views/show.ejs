@@ -18,5 +18,24 @@
         
             <a class="btn btn-outline-success btn-md mt-3" href="/posts" role="button">Rodyti visus pranešimus</a>
     </div>
+    
+        
+    
+    <div class="card">
+        <div class="card-header">
+        Komentarai
+        </div>
+        <% comments.forEach(function(comment){
+            if (comment.postId == post.id) { %>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p><%= comment.body %></p>
+                        <footer class="blockquote-footer">El. pašto adresas: <cite title="Komentaro id <%= comment.id %>">(<%= comment.email %>)</cite></footer>
+                    </blockquote>
+                    <hr class="my-4">
+                </div>
+        <% }}) %>
+    </div>
+    
 </div>
 <% include partials/footer %>

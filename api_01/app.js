@@ -8,6 +8,7 @@ app.set("view engine", ".ejs");
 
 var posts;
 var users;
+var comments;
 
 request('https://jsonplaceholder.typicode.com/posts', function (error, response, body) {
     if(!error && response.statusCode == 200) {
@@ -19,6 +20,12 @@ request('https://jsonplaceholder.typicode.com/posts', function (error, response,
 request('https://jsonplaceholder.typicode.com/users', function (error, response, body) {
     if(!error && response.statusCode == 200) {
         users = JSON.parse(body); //string to object
+    }
+});
+
+request('https://jsonplaceholder.typicode.com/comments', function (error, response, body) {
+    if(!error && response.statusCode == 200) {
+        comments = JSON.parse(body); //string to object
     }
 });
 
@@ -56,9 +63,10 @@ app.get("/posts/new", function(req, res) {
 
 app.get("/posts/:id", function(req, res) {
     var postId = req.params.id;
+    console.log(comments);
     posts.forEach(function(post){
         if (postId == post.id) {
-            res.render("show", {post: post, users: users});
+            res.render("show", {post: post, users: users, comments: comments});
         }
     });
 });
