@@ -25,6 +25,15 @@
                             <div class="d-flex justify-content-end">
                                 <a class="badge badge-info badge-pill" href="/posts/<%= post.id %>">Skaityti daugiau</a>
                             </div>
+                            <span>
+                                <% var commentCount = 0;
+                                    comments.forEach(function(comment) {
+                                        if (comment.postId == post.id) { 
+                                            commentCount++; 
+                                        }
+                                }) %>
+                                Komentarų kiekis: <%= commentCount %>
+                            </span>
                             <footer class="blockquote-footer">
                                 Author: 
                                 <cite title="Post id number: <%= post.id %>">
