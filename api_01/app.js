@@ -35,7 +35,7 @@ app.get("/", function(req, res) {
 });
 
 app.get("/posts", function(req, res) {
-    res.render("index", {posts: posts, users: users});
+    res.render("index", {posts: posts, users: users, comments: comments});
 });
 
 app.post("/posts", function(req, res) {
