@@ -1,0 +1,39 @@
+<% include partials/header %>
+
+<div class="jumbotron py-1 text-center">
+    <h1 class="display-4">Vartotojų sąrašas</h1>
+        <p class="lead">Atvaizduojami visi vartotojai iš pateikto API</p>
+        <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-outline-success btn-md" href="/users/new" role="button">Pridėti naują vartotoją</a>
+    </p>
+</div>
+
+<div class="container">
+    
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Vartotojas</th>
+                <th scope="col">Pilnas vardas</th>
+                <th scope="col">Miestas</th>
+                <th scope="col">Straipsniai</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(function(user) { %>
+            
+                <tr>
+                    <th scope="row"><%= user.username %></th>
+                    <td><%= user.name %></td>
+                    <td><%= user.address.city %></td>
+                    <td><a href="/posts?userId=<%= user.id %>">Straipsniai</a></td>
+                </tr>
+            <% }) %>
+
+        </tbody>
+    </table>
+</div>
+
+
+<% include partials/footer %>

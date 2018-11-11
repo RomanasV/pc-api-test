@@ -71,6 +71,10 @@ app.get("/posts/:id", function(req, res) {
     });
 });
 
+app.get("/users", function(req, res) {
+    res.render("users", {posts: posts, users: users, comments: comments});
+});
+
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("Server is running!");
 });
