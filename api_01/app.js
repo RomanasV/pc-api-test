@@ -75,6 +75,16 @@ app.get("/users", function(req, res) {
     res.render("users", {posts: posts, users: users, comments: comments});
 });
 
+app.get("/users/:id", function(req, res) {
+    var userId = req.params.id;
+    users.forEach(function(user){
+        if (userId == user.id) {
+            res.render("show-user", {posts: posts, user: user, comments: comments});
+        }
+    });
+});
+
+
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("Server is running!");
 });

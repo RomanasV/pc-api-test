@@ -11,7 +11,7 @@
 
 <div class="container">
     
-    <table class="table table-hover table-dark">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th scope="col">Vartotojas</th>
@@ -22,9 +22,8 @@
         </thead>
         <tbody>
             <% users.forEach(function(user) { %>
-            
                 <tr>
-                    <th scope="row"><%= user.username %></th>
+                    <th scope="row"><a href="/users/<%= user.id %>"><%= user.username %></a></th>
                     <td><%= user.name %></td>
                     <td><%= user.address.city %></td>
                     <td><a href="/posts?userId=<%= user.id %>">Straipsniai</a></td>
