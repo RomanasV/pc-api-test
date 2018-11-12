@@ -25,6 +25,15 @@
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
                         <p><%= post.body %></p>
+                        <span>
+                            <% var commentCount = 0;
+                                comments.forEach(function(comment) {
+                                    if (comment.postId == post.id) { 
+                                        commentCount++; 
+                                    }
+                            }) %>
+                            Komentarų kiekis: <%= commentCount %>
+                        </span>
                     </blockquote>
                 </div>
         <% }}) %>
