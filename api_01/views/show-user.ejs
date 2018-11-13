@@ -7,37 +7,42 @@
             <p><span class="font-weight-bold">Slapyvardis: </span><%= user.username %></p>
             <p><span class="font-weight-bold">Vardas: </span><%= user.name %></p>
             <p><span class="font-weight-bold">El. paštas: </span><%= user.email %></p>
-            <p><span class="font-weight-bold">Miestas: </span><%= user.address.city %></p>
-            <p><span class="font-weight-bold">Įmonė: </span><%= user.company.name %></p>
+            <p><span class="font-weight-bold">Adresas: </span><%= user.address.street + " " + user.address.suite + ", " + user.address.city + " City (zipcode: " + user.address.zipcode + ")" %></p>
+            <p><span class="font-weight-bold">Telefono numeris: </span><%= user.phone %></p>
+            <p><span class="font-weight-bold">Internetinis puslapis: </span><a href="https://www.<%= user.website %>" target="_blank"><%= user.website %></a></p>
+            <p><span class="font-weight-bold">Įmonės pavadinimas: </span><%= user.company.name %></p>
+            <p><span class="font-weight-bold">Įmonės šūkis: </span><%= user.company.catchPhrase %></p>
+            <p><span class="font-weight-bold">Įmonės kryptis: </span><%= user.company.bs %></p>
         </p>
         
         <a class="btn btn-outline-success btn-md mt-3" href="/posts" role="button">Rodyti visus pranešimus</a>
     </div>
     
         
-    
-    <div class="card">
+    <h3>Vartotojo pranešimai</h3>
+
         <% posts.forEach(function(post){
             if (post.userId == user.id) { %>
-                <div class="card-header">
-                    <%= post.title.toUpperCase() %>
-                </div>
-                <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p><%= post.body %></p>
-                        <span>
-                            <% var commentCount = 0;
-                                comments.forEach(function(comment) {
-                                    if (comment.postId == post.id) { 
-                                        commentCount++; 
-                                    }
-                            }) %>
-                            Komentarų kiekis: <%= commentCount %>
-                        </span>
-                    </blockquote>
+                <div class="card mb-2">
+                    <div class="card-header">
+                        <a href="/posts/<%= post.id %>"><%= post.title.toUpperCase() %></a>
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p><%= post.body %></p>
+                            <span>
+                                <% var commentCount = 0;
+                                    comments.forEach(function(comment) {
+                                        if (comment.postId == post.id) { 
+                                            commentCount++; 
+                                        }
+                                }) %>
+                                Komentarų kiekis: <%= commentCount %>
+                            </span>
+                        </blockquote>
+                    </div>
                 </div>
         <% }}) %>
-    </div>
     
 </div>
 <% include partials/footer %>
