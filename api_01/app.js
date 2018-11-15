@@ -42,16 +42,13 @@ app.post("/posts", function(req, res) {
     var title = req.body.title;
     var body = req.body.body;
     var userId = req.body.userId;
-    console.log("user id is: " + userId);
     // get last index of object array
     var lastIndex = posts.length - 1;
-    console.log("Last index " + lastIndex);
     // get the id of last object
     var lastId = posts[lastIndex].id;
     console.log("last id " + posts[lastIndex].id);
     // set the id for new object
     var newLastId = lastId + 1;
-    console.log("New last id " + newLastId);
     var newPost = {title: title, body: body, userId: userId, id: newLastId};
     posts.push(newPost);
     res.redirect("/posts/" + newLastId);
@@ -63,7 +60,6 @@ app.get("/posts/new", function(req, res) {
 
 app.get("/posts/:id", function(req, res) {
     var postId = req.params.id;
-    console.log(comments);
     posts.forEach(function(post){
         if (postId == post.id) {
             res.render("show", {post: post, users: users, comments: comments});
@@ -73,6 +69,45 @@ app.get("/posts/:id", function(req, res) {
 
 app.get("/users", function(req, res) {
     res.render("users", {posts: posts, users: users, comments: comments});
+});
+
+app.post("/users", function(req, res) {
+    var name = req.body.name;
+    var username = req.body.username;
+    var email = req.body.email;
+    var street = req.body.street;
+    var suite = req.body.suite;
+    var city = req.body.city;
+    var zipcode = req.body.zipcode;
+    var phone = req.body.phone;
+    var website = req.body.website;
+    // get last index of object array
+    var lastIndex = users.length - 1;
+    // get the id of last object
+    var lastId = users[lastIndex].id;
+    console.log("last id " + posts[lastIndex].id);
+    // set the id for new object
+    var newLastId = lastId + 1;
+    var newUser = {
+        name: name,
+        username: username,
+        email: email,
+        id: newLastId,
+        address: {
+            street: street,
+            suite: suite,
+            city: city,
+            zipcode: zipcode
+        },
+        phone: phone,
+        website: website
+    };
+    users.push(newUser);
+    res.redirect("/users/" + newLastId);
+});
+
+app.get("/users/new", function(req, res) {
+    res.render("new-user");
 });
 
 app.get("/users/:id", function(req, res) {
