@@ -16,6 +16,29 @@
         <a class="btn btn-outline-success btn-md mt-3" href="/posts" role="button">Rodyti visus pranešimus</a>
     </div>
     
+    <h3>Vartotojo albumai</h3>
+        <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Albumo pavadinimas</th>
+                <th scope="col">Nuotraukų kiekis</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% albums.forEach(function(album) { 
+                if (album.userId == user.id) { 
+            %>
+                <tr>
+                    <th scope="row"><a href="#"><%= album.id %></a></th>
+                    <td><%= album.title %></td>
+                    <td>Kiekis</td>
+                </tr>
+            <% }}) %>
+
+        </tbody>
+    </table>
+    
         
     <h3>Vartotojo pranešimai</h3>
 

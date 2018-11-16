@@ -9,6 +9,7 @@ app.set("view engine", ".ejs");
 var posts;
 var users;
 var comments;
+var albums;
 
 request('https://jsonplaceholder.typicode.com/posts', function (error, response, body) {
     if(!error && response.statusCode == 200) {
@@ -26,6 +27,12 @@ request('https://jsonplaceholder.typicode.com/users', function (error, response,
 request('https://jsonplaceholder.typicode.com/comments', function (error, response, body) {
     if(!error && response.statusCode == 200) {
         comments = JSON.parse(body); //string to object
+    }
+});
+
+request('https://jsonplaceholder.typicode.com/albums', function (error, response, body) {
+    if(!error && response.statusCode == 200) {
+        albums = JSON.parse(body); //string to object
     }
 });
 
@@ -114,7 +121,7 @@ app.get("/users/:id", function(req, res) {
     var userId = req.params.id;
     users.forEach(function(user){
         if (userId == user.id) {
-            res.render("show-user", {posts: posts, user: user, comments: comments});
+            res.render("show-user", {posts: posts, user: user, comments: comments, albums: albums});
         }
     });
 });
