@@ -75,7 +75,7 @@ app.get("/posts/:id", function(req, res) {
 });
 
 app.get("/users", function(req, res) {
-    res.render("users", {posts: posts, users: users, comments: comments});
+    res.render("users", {posts: posts, users: users, comments: comments, albums: albums});
 });
 
 app.post("/users", function(req, res) {

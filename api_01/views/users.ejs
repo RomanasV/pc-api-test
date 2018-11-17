@@ -17,7 +17,8 @@
                 <th scope="col">Vartotojas</th>
                 <th scope="col">Pilnas vardas</th>
                 <th scope="col">Miestas</th>
-                <th scope="col">Straipsniai</th>
+                <th scope="col">Straipsnių kiekis</th>
+                <th scope="col">Albumų kiekis</th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +27,22 @@
                     <th scope="row"><a href="/users/<%= user.id %>"><%= user.username %></a></th>
                     <td><%= user.name %></td>
                     <td><%= user.address.city %></td>
-                    <td><a href="/posts?userId=<%= user.id %>">Straipsniai</a></td>
+                    
+                        <%  var postsCount = 0;
+                            posts.forEach(function(post) {
+                                if (user.id == post.userId) {
+                                postsCount++;
+                            }
+                        }) %>
+                    <td><%= postsCount %></td>
+                    
+                        <%  var albumsCount = 0;
+                            albums.forEach(function(album) {
+                                if (user.id == album.userId) {
+                                albumsCount++;
+                            }
+                        }) %>
+                    <td><%= albumsCount %></td>
                 </tr>
             <% }) %>
 
